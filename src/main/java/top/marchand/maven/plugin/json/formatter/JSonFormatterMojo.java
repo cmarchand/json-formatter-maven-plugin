@@ -48,14 +48,23 @@ import java.util.List;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import static org.apache.maven.plugins.annotations.LifecyclePhase.GENERATE_SOURCES;
+import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 /**
- *
+ * Format JSon file(s)
  * @author cmarchand
  */
+@Mojo(
+        name = "json-format",
+        defaultPhase = GENERATE_SOURCES
+)
 public class JSonFormatterMojo extends AbstractMojo {
     
+    /**
+     * The format operations to perform
+     */
     @Parameter
     public List<Format> formats;
     
@@ -111,8 +120,10 @@ public class JSonFormatterMojo extends AbstractMojo {
                                 Path relative = sourceDir.relativize(file);
                                 JsonElement sourceJson = JsonParser.parseReader(
                                         new InputStreamReader(new FileInputStream(file.toFile()), charset));
+                                File targetFile = targetPath.resolve(relative).toFile();
+                                Files.createDirectories(targetFile.getParentFile().toPath());
                                 OutputStreamWriter writer = new OutputStreamWriter(
-                                        new FileOutputStream(targetPath.resolve(relative).toFile()),
+                                        new FileOutputStream(targetFile),
                                         charset
                                 );
                                 writer.append(gson.toJson(sourceJson));
@@ -139,7 +150,7 @@ public class JSonFormatterMojo extends AbstractMojo {
         }
     }
     
-    public class Format {
+    public static class Format {
         /**
          * If <tt>true</tt>, output is indented
          */
