@@ -33,17 +33,23 @@
           <execution>
             <goals>
               <goal>json-format</goal>
-      </goals>
-      <configuration>
-	      <formats>
-		      <format>
-			      <pretty>false</pretty>
-			      <files>
-				      <file>src/main/json/pretty.json</file>
-			      </files>
-		      </format>
-	      </formats>
-      </configuration>
+            </goals>
+            <configuration>
+              <formats>
+                <format>
+                  <pretty>false</pretty>
+                  <files>
+                    <file>src/main/json/pretty.json</file>
+                  </files>
+                </format>
+                <format>
+                  <pretty>true</pretty>
+                  <files>
+                    <file>src/main/json/ugly.json</file>
+                  </files>
+                </format>
+              </formats>
+            </configuration>
           </execution>
         </executions>
       </plugin>
