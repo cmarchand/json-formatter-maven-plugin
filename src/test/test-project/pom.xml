@@ -5,7 +5,7 @@
 
   <groupId>top.marchand.maven.json.formatter.maven.plugin</groupId>
   <artifactId>tester</artifactId>
-  <relativePath>../../..</relativePath>
+  <version>1.00.00-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>JSon formatter plugin tester</name>
@@ -20,7 +20,7 @@
         <plugin>
 		<groupId>top.marchand.maven</groupId>
 		<artifactId>json-formatter-maven-plugin</artifactId>
-		<version>${project.vertsion}</version>
+		<version>1.00.00-SNAPSHOT</version>
         </plugin>
       </plugins>
     </pluginManagement>
